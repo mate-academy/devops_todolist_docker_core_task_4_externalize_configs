@@ -23,7 +23,7 @@ SECRET_KEY = "@e2(yx)v&tgh3_s=0yja-i!dpebxsz^dg47x)-k&kq_3zf*9e*"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
@@ -60,14 +60,21 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+SQL_ENGINE = os.environ.get("ENGINE","")
+SQL_NAME = os.environ.get("NAME","")
+SQL_USER = os.environ.get("USER","")
+SQL_PASSWORD = os.environ.get("PASSWORD","")
+SQL_HOST = os.environ.get("HOST","")
+SQL_PORT = os.environ.get("PORT","")
+
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': SQL_ENGINE,
+        'NAME': SQL_NAME,
+        'USER': SQL_USER,
+        'PASSWORD': SQL_PASSWORD,
+        'HOST': SQL_HOST,  # You can use a different host if your MySQL server is on a remote machine.
+        'PORT': SQL_PORT,  # Leave this empty to use the default MySQL port (3306). 
     }
 }
 
