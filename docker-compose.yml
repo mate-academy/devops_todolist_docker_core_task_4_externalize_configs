@@ -6,7 +6,7 @@ networks:
 
 services:
   pythonapp:
-    image: todoapp:latest
+    image: todoapp:2.0.2
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,10 +14,10 @@ services:
       - "8080:8080"
     environment:
       - PYTHONUNBUFFERED=1
-      - ENV MYSQL_ROOT_PASSWORD=1234
-      - ENV MYSQL_DATABASE=app_db
-      - ENV MYSQL_USER=app_user
-      - ENV MYSQL_PASSWORD=1234
+      - ENGINE=mysql.connector.django
+      - NAME=app_db
+      - USER=app_user
+      - PASSWORD=1234
       - HOST=mysql
       - PORT=3306
     networks:
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mysql-local:latest
+    image: mysql-local:1.0.1
     build:
       context: .
       dockerfile: Dockerfile.mysql
