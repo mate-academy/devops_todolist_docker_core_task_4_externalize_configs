@@ -28,7 +28,7 @@ or start on the [landing page](http://localhost:8000/)
 - Fork this repository
 
 #### Requirements
-1. pdate docker-compose to be able to set such env variables:
+1. update docker-compose to be able to set such env variables:
     - ENGINE
     - NAME
     - USER
