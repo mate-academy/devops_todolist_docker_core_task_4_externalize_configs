@@ -57,12 +57,12 @@ ROOT_URLCONF = "todolist.urls"
 
 WSGI_APPLICATION = "todolist.wsgi.application"
 
-engineString = os.environ.get("ENGINE", "")
-nameString = os.environ.get("NAME", "")
-userString = os.environ.get("USER", "")
-passwordString = os.environ.get("PASSWORD", "")
-hostString = os.environ.get("HOST", "")
-portString = os.environ.get("PORT", "")
+engineString = os.environ.get("ENGINE", "mysql.connector.django")
+nameString = os.environ.get("NAME", "app_db")
+userString = os.environ.get("USER", "app_user")
+passwordString = os.environ.get("PASSWORD", "1234")
+hostString = os.environ.get("HOST", "mysql")
+portString = os.environ.get("PORT", "3306")
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
