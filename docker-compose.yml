@@ -3,7 +3,7 @@ networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:latest
+    image: todoapp:2.0.1
     build:
       context: .
       dockerfile: Dockerfile
