@@ -1,6 +1,6 @@
 ### To launch app using base container orchestration(docker-compose) with ENV file:
 
-1. Create .env file. Copy placeholders from .env.example. Replace the placeholder values with your actual environment variable values.
+1. Replace ENV variables in docker-compose file with your own
 
 2. To start(add flag -d for detach mode)
 

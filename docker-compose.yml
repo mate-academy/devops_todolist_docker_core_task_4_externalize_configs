@@ -13,14 +13,12 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
 
-      - DB_ENGINE=${DB_ENGINE}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_USER_PASSWORD=${DB_USER_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-    env_file:
-      - .env
+      - DB_ENGINE=mysql.connector.django
+      - DB_NAME=app_db
+      - DB_USER=app_user
+      - DB_USER_PASSWORD=1234
+      - DB_HOST=mysql
+      - DB_PORT=3306
     networks:
       - todoapp-net
     depends_on:
