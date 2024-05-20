@@ -1,51 +1,18 @@
-# Django-Todolist
+### To launch app using base container orchestration(docker-compose) with ENV file:
 
-Django-Todolist is a todolist web application with the most basic features of most web apps, i.e. accounts/login, API and (somewhat) interactive UI.
+1. Replace ENV variables in docker-compose file with your own
 
----
-CSS | [Skeleton](http://getskeleton.com/)
-JS  | [jQuery](https://jquery.com/)
+2. To start(add flag -d for detach mode)
 
-## Explore
-Try it out by installing the requirements. (Works only with python >= 3.8, due to Django 4)
+```
+docker-compose up
 
-    pip install -r requirements.txt
+```
 
-Create a database schema:
+3. You can access app by typing "http://localhost:8080" in browser's address bar.
 
-    python manage.py migrate
+4. To finish
 
-And then start the server (default: http://localhost:8000)
-
-    python manage.py runserver
-
-
-Now you can browse the [API](http://localhost:8000/api/)
-or start on the [landing page](http://localhost:8000/)
-
-## Task
-#### Prerequisites
-- Fork this repository
-
-#### Requirements
-1. pdate docker-compose to be able to set such env variables:
-    - ENGINE
-    - NAME
-    - USER
-    - PASSWORD
-    - HOST
-    - PORT
-2. Update your app to read ENV vars and set DATABASES section fields inside of todolist/settigns.py file
-3. Use semantic versioning to tag image inside the docker-compose
-4. TODO App should work as before
-5. Create PR with your changes and attach it for validation on a platform
-
-
-
-
-
-
-
-
-
-
+```
+docker-compose down
+```
