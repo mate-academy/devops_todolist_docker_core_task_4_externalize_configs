@@ -4,7 +4,7 @@ networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:2.0.0
+    image: todoapp:2.0.1
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,6 +12,12 @@ services:
       - "8080:8080"
     environment:
       - PYTHONUNBUFFERED=1
+      - DB_Engine=mysql.connector.django
+      - DB_Name=app_db
+      - DB_User=app_user
+      - DB_Password=1234
+      - DB_Host=mysql
+      - DB_Port=3306
     networks:
       - todoapp-net
     depends_on:
