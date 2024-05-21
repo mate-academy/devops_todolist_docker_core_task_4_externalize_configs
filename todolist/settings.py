@@ -13,6 +13,13 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# DATABASES default parameters to be amended in docker-compose file
+env_var_db_eng = os.environ.get("DB_Engine", "")
+env_var_db_nam = os.environ.get("DB_Name", "")
+env_var_db_usr = os.environ.get("DB_User", "")
+env_var_db_pas = os.environ.get("DB_Password", "")
+env_var_db_hst = os.environ.get("DB_Host", "")
+env_var_db_prt = os.environ.get("DB_Port", "")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -62,12 +69,12 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': env_var_db_eng,
+        'NAME': env_var_db_nam,
+        'USER': env_var_db_usr,
+        'PASSWORD': env_var_db_pas,
+        'HOST': env_var_db_hst,
+        'PORT': env_var_db_prt,
     }
 }
 
