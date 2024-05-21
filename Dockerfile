@@ -11,15 +11,6 @@ FROM python:${PYTHON_VERSION} as run
 
 WORKDIR /app
 
-ENV PYTHONUNBUFFERED=1
-
-ENV DB_Engine="default"
-ENV DB_Name="default"
-ENV DB_User="default"
-ENV DB_Password="default"
-ENV DB_Host="default"
-ENV DB_Port="default"
-
 COPY --from=builder /app .
 
 RUN pip install --upgrade pip && \
