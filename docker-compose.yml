@@ -4,7 +4,7 @@ networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:2.0.0
+    image: todoapp:2.0.1
     build:
       context: .
       dockerfile: Dockerfile
@@ -24,7 +24,7 @@ services:
       - mysql
     restart: unless-stopped
   mysql:
-    image: mysql-local:1.0.0
+    image: mysql-local:1.0.1
     build:
       context: .
       dockerfile: Dockerfile.mysql
