@@ -12,6 +12,12 @@ FROM python:${PYTHON_VERSION} as run
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
+ENV MYSQL_ENGINE="default"
+ENV MYSQL_DATABASE="default"
+ENV MYSQL_USER="default"
+ENV MYSQL_PASSWORD="default"
+ENV MYSQL_HOST="default"
+ENV MYSQL_PORT="default"
 
 COPY --from=builder /app .
 
