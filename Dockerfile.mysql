@@ -2,11 +2,12 @@
 FROM mysql:latest
 
 # Environment variables for MySQL configuration
-ENV MYSQL_ROOT_PASSWORD=1234
-ENV MYSQL_DATABASE=app_db
-ENV MYSQL_USER=app_user
-ENV MYSQL_PASSWORD=1234
-
+ENV MYSQL_ROOT_PASSWORD=default
+ENV MYSQL_DATABASE=default
+ENV MYSQL_USER=default
+ENV MYSQL_PASSWORD=default
+ENV PORT=3306 
+ENV ENGINE=default
 # Expose port 3306 for MySQL connections
 EXPOSE 3306
 
