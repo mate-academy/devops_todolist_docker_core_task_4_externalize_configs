@@ -57,17 +57,23 @@ ROOT_URLCONF = "todolist.urls"
 
 WSGI_APPLICATION = "todolist.wsgi.application"
 
+dbEngine = os.environ.get("DB_ENGINE", "")
+dbName = os.environ.get("DB_NAME", "")
+dbUser = os.environ.get("DB_USER", "")
+dbPassword = os.environ.get("DB_PASSWORD", "")
+dbHost = os.environ.get("DB_HOST", "")
+dbPort = os.environ.get("DB_PORT", "")
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': dbEngine,
+        'NAME': dbName,
+        'USER': dbUser,
+        'PASSWORD': dbPassword,
+        'HOST': dbHost,  # You can use a different host if your MySQL server is on a remote machine.
+        'PORT': dbPort  # Leave this empty to use the default MySQL port (3306).
     }
 }
 
