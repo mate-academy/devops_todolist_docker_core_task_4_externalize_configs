@@ -13,6 +13,12 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ENGINE = os.getenv('ENGINE', 'mysql.connector.django')
+NAME = os.getenv('NAME', 'app_db')
+USER = os.getenv('USER', 'app_user')
+PASSWORD = os.getenv('PASSWORD', '1234')
+HOST = os.getenv('HOST', 'mysql')
+PORT = os.getenv('PORT', '')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -62,12 +68,12 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': ENGINE,
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,  # You can use a different host if your MySQL server is on a remote machine.
+        'PORT': PORT,  # Leave this empty to use the default MySQL port (3306).
     }
 }
 
