@@ -1,4 +1,3 @@
-# docker-compose.yml
 version: '3'
 networks:
   todoapp-net:
@@ -12,6 +11,12 @@ services:
       - "8080:8080"
     environment:
       - PYTHONUNBUFFERED=1
+      - DB_ENGINE=${DB_ENGINE}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
     networks:
       - todoapp-net
     depends_on:
