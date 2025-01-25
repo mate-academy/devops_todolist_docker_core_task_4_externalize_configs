@@ -12,6 +12,13 @@ FROM python:${PYTHON_VERSION} as run
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
+ENV MYSQL_ENGINE=mysql.connector.django
+ENV MYSQL_NAME=app_db
+ENV MYSQL_USER=app_user
+ENV MYSQL_PASSWORD=!@#123
+ENV MYSQL_HOST=mysql
+ENV MYSQL_PORT=3306
+
 
 COPY --from=builder /app .
 
