@@ -1,17 +1,25 @@
-# docker-compose.yml
-version: '3'
+name: todoapp
+
 networks:
   todoapp-net:
+    name: todoapp-net
 services:
   pythonapp:
-    image: todoapp:2.0.0
+    image: todoapp:2.0.2
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: app
     ports:
       - "8080:8080"
     environment:
       - PYTHONUNBUFFERED=1
+      - ENGINE=mysql.connector.django
+      - NAME=app_db
+      - USER=app_user
+      - PASSWORD=1234
+      - HOST=mysql
+      - PORT=3306
     networks:
       - todoapp-net
     depends_on:
@@ -22,7 +30,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mysql
-    container_name: my-sql
+    container_name: mysql-db
     ports:
       - "3306:3306"
     volumes:
@@ -36,3 +44,4 @@ services:
       - todoapp-net
 volumes:
   todoapp-db-data:
+    name: todoapp-db-data
