@@ -1,10 +1,5 @@
-# Django-Todolist
-
-Django-Todolist is a todolist web application with the most basic features of most web apps, i.e. accounts/login, API and (somewhat) interactive UI.
-
----
-CSS | [Skeleton](http://getskeleton.com/)
-JS  | [jQuery](https://jquery.com/)
+# Dockerization
+  This project involves containerizing a Python-based To-Do List application using Docker. The application will connect to a MySQL database, with data persistence managed via Docker volumes. Configuration settings will be externalized using environment variables or configuration files, ensuring flexibility and security. 
 
 ## Explore
 Try it out by installing the requirements. (Works only with python >= 3.8, due to Django 4)
@@ -23,12 +18,8 @@ And then start the server (default: http://localhost:8000)
 Now you can browse the [API](http://localhost:8000/api/)
 or start on the [landing page](http://localhost:8000/)
 
-## Task
-#### Prerequisites
-- Fork this repository
-
 #### Requirements
-1. pdate docker-compose to be able to set such env variables:
+1. Update docker-compose to be able to set such env variables:
     - ENGINE
     - NAME
     - USER
