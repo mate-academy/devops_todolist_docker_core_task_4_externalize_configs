@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import environ
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -60,14 +61,17 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+env = environ.Env()
+environ.Env.read_env()
+
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': env('ENGINE'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
 }
 
