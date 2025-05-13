@@ -6,46 +6,26 @@ Django-Todolist is a todolist web application with the most basic features of mo
 CSS | [Skeleton](http://getskeleton.com/)
 JS  | [jQuery](https://jquery.com/)
 
+---
+In this project, I have added the ability to control configs from the common source - compose file.
+
+---
+
 ## Explore
-Try it out by installing the requirements. (Works only with python >= 3.8, due to Django 4)
 
-    pip install -r requirements.txt
+To run your todo app locally you should install Docker, it should be supplied with Docker compose, if not, please install it separately.
 
-Create a database schema:
+Then, using the terminal, navigate with cd command to the downloaded folder and simply run:
 
-    python manage.py migrate
+```
+docker compose up
+```
+Add -d flag to run it detached.
 
-And then start the server (default: http://localhost:8000)
+To stop the container you should execute following command from the same folder:
 
-    python manage.py runserver
+```
+docker compose down
+```
 
-
-Now you can browse the [API](http://localhost:8000/api/)
-or start on the [landing page](http://localhost:8000/)
-
-## Task
-#### Prerequisites
-- Fork this repository
-
-#### Requirements
-1. pdate docker-compose to be able to set such env variables:
-    - ENGINE
-    - NAME
-    - USER
-    - PASSWORD
-    - HOST
-    - PORT
-2. Update your app to read ENV vars and set DATABASES section fields inside of todolist/settigns.py file
-3. Use semantic versioning to tag image inside the docker-compose
-4. TODO App should work as before
-5. Create PR with your changes and attach it for validation on a platform
-
-
-
-
-
-
-
-
-
-
+To change the default creds for app and database, please simply change the respective env variables in the docker-compose.yml file.
