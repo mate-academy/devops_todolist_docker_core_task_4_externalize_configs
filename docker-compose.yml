@@ -1,7 +1,11 @@
+version: '3.8'  # Змінено версію
+
 networks:
   todoapp-net:
+
 services:
   pythonapp:
+    image: todoapp:2.0.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,28 +23,4 @@ services:
       - todoapp-net
     depends_on:
       mysql:
-        condition: service_healthy
-    restart: unless-stopped
-  mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    container_name: my-sql
-    ports:
-      - "3306:3306"
-    volumes:
-      - todoapp-db-data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=app_db
-      - MYSQL_USER=app_user
-      - MYSQL_PASSWORD=1234
-    networks:
-      - todoapp-net
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=1234"]
-      interval: 5s
-      timeout: 10s
-      retries: 10
-volumes:
-  todoapp-db-data:
+        condition: service_healthy  # Виправлений синтаксис
