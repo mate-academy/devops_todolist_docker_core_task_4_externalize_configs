@@ -2,7 +2,6 @@
 ARG PYTHON_VERSION=3.8
 FROM python:${PYTHON_VERSION} as builder
 
-# Set the working directory
 WORKDIR /app
 COPY . .
 
@@ -16,7 +15,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-# Set environment variables correctly
+# Set environment variables
 ENV PYTHONPATH=/app \
     PYTHONUNBUFFERED=1
 
@@ -25,11 +24,10 @@ COPY --from=builder /app .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-# Copy and make executable
+# Copy and make entrypoint executable
 COPY docker-entrypoint.sh /app/
 RUN chmod +x /app/docker-entrypoint.sh
 
 EXPOSE 8080
 
-# Use the entrypoint script
 ENTRYPOINT ["./docker-entrypoint.sh"]
