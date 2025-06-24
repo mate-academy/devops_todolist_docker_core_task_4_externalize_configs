@@ -1,32 +1,26 @@
-# Stage 1: Build Stage
 ARG PYTHON_VERSION=3.8
-FROM python:${PYTHON_VERSION} as builder
+FROM python:${PYTHON_VERSION}
 
-WORKDIR /app
-COPY . .
-
-# Stage 2: Run Stage
-FROM python:${PYTHON_VERSION} as run
-
-# Install MySQL client for health checks
+# Встановлюємо MySQL клієнт для перевірки здоров'я
 RUN apt-get update && \
     apt-get install -y default-mysql-client && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Set environment variables
-ENV PYTHONPATH=/app \
-    PYTHONUNBUFFERED=1
-
-COPY --from=builder /app .
-
+# Встановлюємо залежності окремо для кешування
+COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-# Copy and make entrypoint executable
-COPY docker-entrypoint.sh /app/
-RUN chmod +x /app/docker-entrypoint.sh
+# Копіюємо решту додатку
+COPY . .
+
+# Робимо entrypoint виконуваним
+RUN chmod +x docker-entrypoint.sh
+
+ENV PYTHONPATH=/app \
+    PYTHONUNBUFFERED=1
 
 EXPOSE 8080
 
