@@ -11,7 +11,13 @@ FROM python:${PYTHON_VERSION} as run
 
 WORKDIR /app
 
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1 \
+    ENGINE=django.db.backends.mysql \
+    NAME=app_db \
+    USER=app_user \
+    PASSWORD=1234 \
+    HOST=mysql \
+    PORT=3306
 
 COPY --from=builder /app .
 
