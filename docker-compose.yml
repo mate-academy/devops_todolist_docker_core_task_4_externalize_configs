@@ -9,9 +9,15 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - PYTHONUNBUFFERED=1
+      - DB_ENGINE=mysql.connector.django
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=app_db
+      - DB_USER=app_user
+      - DB_PASSWORD=1234
     networks:
       - todoapp-net
     depends_on:
@@ -24,7 +30,7 @@ services:
       dockerfile: Dockerfile.mysql
     container_name: my-sql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - todoapp-db-data:/var/lib/mysql
     environment:

@@ -13,6 +13,8 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
 
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /app .
 
 RUN pip install --upgrade pip && \
@@ -21,4 +23,4 @@ RUN pip install --upgrade pip && \
 EXPOSE 8080
 
 # Run database migrations and start the Django application
-ENTRYPOINT ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
+ENTRYPOINT ["sh", "-c", "until nc -z $DB_HOST $DB_PORT; do echo 'Waiting for MySQL...'; sleep 2; done && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
