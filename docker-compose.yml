@@ -1,61 +1,28 @@
-version: '3.8'
-
-networks:
-  todoapp-net:
-
 services:
-  pythonapp:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: django-app:v1.0.0   # <- додали тег
+  django-app:
+    build: .
     container_name: django-app
     ports:
       - "8080:8080"
     environment:
-      PYTHONUNBUFFERED: 1
-
-      # DB env vars with defaults
       ENGINE: ${ENGINE:-mysql.connector.django}
       NAME: ${NAME:-app_db}
       USER: ${USER:-app_user}
       PASSWORD: ${PASSWORD:-1234}
       HOST: ${HOST:-mysql}
       PORT: ${PORT:-3306}
-
-
-    networks:
-      - todoapp-net
     depends_on:
       - mysql
     restart: unless-stopped
-    entrypoint: >
-      sh -c "
-      until python manage.py migrate; do
-          echo 'Waiting for DB...';
-          sleep 3;
-      done;
-      python manage.py runserver 0.0.0.0:8080
-      "
 
   mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    image: mysql:8.0             # <- додатково можна поставити тег для MySQL
+    image: mysql:8
     container_name: my-sql
-    ports:
-      - "3306:3306"
-    volumes:
-      - todoapp-db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-1234}
       MYSQL_DATABASE: ${NAME:-app_db}
       MYSQL_USER: ${USER:-app_user}
       MYSQL_PASSWORD: ${PASSWORD:-1234}
-    networks:
-      - todoapp-net
+    ports:
+      - "3306:3306"
     restart: unless-stopped
-
-volumes:
-  todoapp-db-data:

@@ -1,36 +1,19 @@
-ARG PYTHON_VERSION=3.8
-FROM python:${PYTHON_VERSION}
+FROM python:3.8
 
 WORKDIR /app
-
-# Копіюємо спершу тільки requirements.txt для кешування залежностей
-COPY requirements.txt .
+COPY . .
 
 ENV PYTHONUNBUFFERED=1
 
-# Встановлюємо залежності без кешу
+# Встановлюємо netcat
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Копіюємо решту коду після встановлення залежностей
-COPY . .
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 8080
 
-# Inline entrypoint з чеканням БД та fallback на SQLite
-ENTRYPOINT ["sh", "-c", "\
-  if [ -z \"$ENGINE\" ]; then \
-    echo 'ENGINE not set, using SQLite fallback'; \
-    export ENGINE='django.db.backends.sqlite3'; \
-    export NAME='db.sqlite3'; \
-    export USER=''; \
-    export PASSWORD=''; \
-    export HOST=''; \
-    export PORT=''; \
-  fi; \
-  until python manage.py migrate; do \
-    echo 'Waiting for DB...'; \
-    sleep 3; \
-  done; \
-  python manage.py runserver 0.0.0.0:8080 \
-"]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -63,10 +63,10 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 import os
 from pathlib import Path
 
+# BASE_DIR визначений один раз
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATABASES = {}
-
+# Зчитування змінних оточення для БД
 ENGINE = os.environ.get('ENGINE')
 NAME = os.environ.get('NAME')
 USER = os.environ.get('USER')
@@ -75,19 +75,23 @@ HOST = os.environ.get('HOST')
 PORT = os.environ.get('PORT')
 
 if ENGINE:
-    DATABASES['default'] = {
-        'ENGINE': ENGINE,
-        'NAME': NAME,
-        'USER': USER,
-        'PASSWORD': PASSWORD,
-        'HOST': HOST,
-        'PORT': PORT,
+    DATABASES = {
+        'default': {
+            'ENGINE': ENGINE,
+            'NAME': NAME,
+            'USER': USER,
+            'PASSWORD': PASSWORD,
+            'HOST': HOST,
+            'PORT': PORT,
+        }
     }
 else:
-    # fallback на SQLite
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # SQLite fallback для локальної роботи без env
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(BASE_DIR / 'db.sqlite3'),
+        }
     }
 
 
