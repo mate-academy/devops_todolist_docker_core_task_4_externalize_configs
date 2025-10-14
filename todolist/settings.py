@@ -61,17 +61,34 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 import os
+from pathlib import Path
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',  # використовуємо mysql-connector
-        'NAME': os.environ.get('NAME', 'app_db'),
-        'USER': os.environ.get('USER', 'app_user'),
-        'PASSWORD': os.environ.get('PASSWORD', '1234'),
-        'HOST': os.environ.get('HOST', 'mysql'),
-        'PORT': os.environ.get('PORT', '3306'),
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASES = {}
+
+ENGINE = os.environ.get('ENGINE')
+NAME = os.environ.get('NAME')
+USER = os.environ.get('USER')
+PASSWORD = os.environ.get('PASSWORD')
+HOST = os.environ.get('HOST')
+PORT = os.environ.get('PORT')
+
+if ENGINE:
+    DATABASES['default'] = {
+        'ENGINE': ENGINE,
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
     }
-}
+else:
+    # fallback на SQLite
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
 
 # Internationalization

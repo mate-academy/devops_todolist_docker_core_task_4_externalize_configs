@@ -15,14 +15,14 @@ services:
     environment:
       PYTHONUNBUFFERED: 1
 
-      # --- змінні для Django settings.py ---
-      ENGINE: mysql.connector.django
+      # DB env vars with defaults
+      ENGINE: ${ENGINE:-mysql.connector.django}
       NAME: ${NAME:-app_db}
       USER: ${USER:-app_user}
       PASSWORD: ${PASSWORD:-1234}
-      HOST: mysql
+      HOST: ${HOST:-mysql}
       PORT: ${PORT:-3306}
-      # ---------------------------------------
+
 
     networks:
       - todoapp-net
