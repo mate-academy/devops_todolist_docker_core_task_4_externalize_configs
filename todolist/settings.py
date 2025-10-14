@@ -60,16 +60,40 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+import os
+from pathlib import Path
+
+# BASE_DIR визначений один раз
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Зчитування змінних оточення для БД
+ENGINE = os.environ.get('ENGINE')
+NAME = os.environ.get('NAME')
+USER = os.environ.get('USER')
+PASSWORD = os.environ.get('PASSWORD')
+HOST = os.environ.get('HOST')
+PORT = os.environ.get('PORT')
+
+if ENGINE:
+    DATABASES = {
+        'default': {
+            'ENGINE': ENGINE,
+            'NAME': NAME,
+            'USER': USER,
+            'PASSWORD': PASSWORD,
+            'HOST': HOST,
+            'PORT': PORT,
+        }
     }
-}
+else:
+    # SQLite fallback для локальної роботи без env
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(BASE_DIR / 'db.sqlite3'),
+        }
+    }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
