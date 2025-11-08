@@ -1,44 +1,44 @@
 # Django-Todolist
 
-Django-Todolist is a todolist web application with the most basic features of most web apps, i.e. accounts/login, API and (somewhat) interactive UI.
+Django-Todolist — це веб-додаток для списку справ з найосновнішими функціями більшості веб-додатків, тобто облікові записи/вхід, API та (частково) інтерактивний інтерфейс користувача.
 
 ---
 CSS | [Skeleton](http://getskeleton.com/)
 JS  | [jQuery](https://jquery.com/)
 
-## Explore
-Try it out by installing the requirements. (Works only with python >= 3.8, due to Django 4)
+## Дослідження
+Спробуйте, встановивши залежності. (Працює лише з python >= 3.8, через Django 4)
 
     pip install -r requirements.txt
 
-Create a database schema:
+Створіть схему бази даних:
 
     python manage.py migrate
 
-And then start the server (default: http://localhost:8000)
+А потім запустіть сервер (за замовчуванням: http://localhost:8000)
 
     python manage.py runserver
 
 
-Now you can browse the [API](http://localhost:8000/api/)
-or start on the [landing page](http://localhost:8000/)
+Тепер ви можете переглянути [API](http://localhost:8000/api/)
+або почати з [цільової сторінки](http://localhost:8000/)
 
-## Task
-#### Prerequisites
-- Fork this repository
+## Завдання
+#### Передумови
+- Зробіть форк цього репозиторію
 
-#### Requirements
-1. pdate docker-compose to be able to set such env variables:
+#### Вимоги
+1. Оновіть `docker-compose`, щоб мати можливість встановлювати такі змінні середовища:
     - ENGINE
     - NAME
     - USER
     - PASSWORD
     - HOST
     - PORT
-2. Update your app to read ENV vars and set DATABASES section fields inside of todolist/settigns.py file
-3. Use semantic versioning to tag image inside the docker-compose
-4. TODO App should work as before
-5. Create PR with your changes and attach it for validation on a platform
+2. Оновіть ваш додаток для читання змінних середовища та встановлення полів у секції `DATABASES` у файлі `todolist/settings.py`
+3. Використовуйте семантичне версіонування для тегування образу в `docker-compose`
+4. Додаток TODO повинен працювати як і раніше
+5. Створіть PR зі своїми змінами та додайте його для валідації на платформі
 
 
 
