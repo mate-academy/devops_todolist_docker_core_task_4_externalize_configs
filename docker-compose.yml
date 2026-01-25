@@ -4,7 +4,7 @@ networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:2.0.2
+    image: todoapp:2.0.3
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - ENGINE=mysql.connector.django
-      - NAME=mysql
+      - NAME=app_db
       - USER=app_user
       - PASSWORD=1234
       - HOST=mysql
