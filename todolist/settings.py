@@ -67,7 +67,7 @@ DATABASES = {
         'USER': os.getenv('USER', 'app_user'),
         'PASSWORD': os.getenv('PASSWORD', '1234'),
         'HOST': os.getenv('HOST', 'mysql'),  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': os.getenv('port', ''),  # Leave this empty to use the default MySQL port (3306).
+        'PORT': os.getenv('PORT', ''),  # Leave this empty to use the default MySQL port (3306).
     }
 }
 
