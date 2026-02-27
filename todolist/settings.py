@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "@e2(yx)v&tgh3_s=0yja-i!dpebxsz^dg47x)-k&kq_3zf*9e*"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -62,12 +62,12 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'app_db',
-        'USER': 'app_user',
-        'PASSWORD': '1234',
-        'HOST': 'mysql',  # You can use a different host if your MySQL server is on a remote machine.
-        'PORT': '',  # Leave this empty to use the default MySQL port (3306).
+        'ENGINE': os.environ.get("ENGINE"),
+        'NAME': os.environ.get("NAME"),
+        'USER': os.environ.get("USER"),
+        'PASSWORD': os.environ.get("PASSWORD"),
+        'HOST': os.environ.get("HOST"),  # You can use a different host if your MySQL server is on a remote machine.
+        'PORT': os.environ.get("PORT", ""),  # Leave this empty to use the default MySQL port (3306).
     }
 }
 
