@@ -4,6 +4,8 @@ networks:
   todoapp-net:
 services:
   pythonapp:
+    env_file:
+      - .env
     image: todoapp:2.0.0
     build:
       context: .
