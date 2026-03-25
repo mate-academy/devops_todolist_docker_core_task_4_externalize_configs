@@ -1,8 +1,46 @@
 # docker-compose.yml
-version: '3'
+# version: '3'
 networks:
   todoapp-net:
+    driver: bridge
 services:
+  todo-db:
+    image: mysql:latest
+    container_name: todo-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - todoapp-db-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    networks:
+      - todoapp-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  todo-migration:
+    image: todo-migration:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile.migration
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE=${DATABASE}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=todo-db
+      - DB_PORT=${DB_PORT}
+      - DB_ENGINE=${DB_ENGINE}
+    networks:
+      - todoapp-net
+    depends_on:
+      todo-db:
+        condition: service_healthy
   pythonapp:
     image: todoapp:2.0.0
     build:
@@ -12,27 +50,18 @@ services:
       - "8080:8080"
     environment:
       - PYTHONUNBUFFERED=1
+      - DATABASE=${DATABASE}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=todo-db
+      - DB_PORT=${DB_PORT}
+      - DB_ENGINE=${DB_ENGINE}
     networks:
       - todoapp-net
     depends_on:
-      - mysql
-    restart: unless-stopped
-  mysql:
-    image: mysql-local:1.0.0
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    container_name: my-sql
-    ports:
-      - "3306:3306"
-    volumes:
-      - todoapp-db-data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=app_db
-      - MYSQL_USER=app_user
-      - MYSQL_PASSWORD=1234
-    networks:
-      - todoapp-net
+      todo-db:
+        condition: service_healthy
+      todo-migration:
+        condition: service_completed_successfully
 volumes:
   todoapp-db-data:
