@@ -15,10 +15,12 @@ ENV PYTHONUNBUFFERED=1
 
 COPY --from=builder /app .
 
+
+RUN chmod +x wait-for-it.sh
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 EXPOSE 8080
 
 # Run database migrations and start the Django application
-ENTRYPOINT ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
+ENTRYPOINT ["sh", "-c", "./wait-for-it.sh mysql:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
