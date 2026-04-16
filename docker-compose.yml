@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
         ENGINE: ${ENGINE}
         NAME: ${NAME}
@@ -36,7 +36,7 @@ services:
         MYSQL_ROOT_PASSWORD: ${PASSWORD}
         MYSQL_DATABASE: ${NAME}
         MYSQL_USER: ${USER}
-        MYSQL_PASSWOR: ${PASSWORD}
+        MYSQL_PASSWORD: ${PASSWORD}
     networks:
       - todoapp-net
 volumes:
