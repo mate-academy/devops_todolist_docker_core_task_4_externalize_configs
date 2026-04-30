@@ -28,10 +28,13 @@ services:
     volumes:
       - todoapp-db-data:/var/lib/mysql
     environment:
+      - ENGINE=django.db.backends.mysql
+      - NAME=app_db
+      - USER=app_user
+      - PASSWORD=1234
+      - HOST=mysql
+      - PORT=3306
       - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=app_db
-      - MYSQL_USER=app_user
-      - MYSQL_PASSWORD=1234
     networks:
       - todoapp-net
 volumes:
