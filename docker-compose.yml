@@ -11,6 +11,12 @@ services:
     ports:
       - "8080:8080"
     environment:
+      - ENGINE=${ENGINE}
+      - NAME=${NAME}
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
+      - HOST=${HOST}
+      - PORT=${PORT}
       - PYTHONUNBUFFERED=1
     networks:
       - todoapp-net
