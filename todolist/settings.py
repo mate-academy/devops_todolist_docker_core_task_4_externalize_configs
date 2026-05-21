@@ -64,7 +64,7 @@ DATABASES = {
     'default': {
         'ENGINE': os.environ.get('ENGINE', 'django.db.backends.sqlite3'),
         'NAME': os.environ.get('NAME', os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': os.environ.get('DB_USER', ''),
+        'USER': os.environ.get('USER', ''),
         'PASSWORD': os.environ.get('PASSWORD', ''),
         'HOST': os.environ.get('HOST', ''),  # You can use a different host if your MySQL server is on a remote machine.
         'PORT': os.environ.get('PORT', ''), # Leave this empty to use the default MySQL port (3306).
