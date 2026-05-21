@@ -13,6 +13,12 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
 
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    build-essential \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /app .
 
 RUN pip install --upgrade pip && \
