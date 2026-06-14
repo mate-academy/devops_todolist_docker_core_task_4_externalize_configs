@@ -30,12 +30,12 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DB_ENGINE: django.db.backends.mysql
-      DB_NAME: app_db
-      DB_USER: app_user
-      DB_PASSWORD: 1234
-      DB_HOST: mysql
-      DB_PORT: 3306
+      ENGINE: django.db.backends.mysql
+      NAME: app_db
+      USER: app_user
+      PASSWORD: 1234
+      HOST: mysql
+      PORT: 3306
     depends_on:
       mysql:
         condition: service_healthy
