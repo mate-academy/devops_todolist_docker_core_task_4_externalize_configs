@@ -62,8 +62,8 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get("ENGINE"),
-        'NAME': os.environ.get("NAME"),
+        'ENGINE': os.environ.get("ENGINE", "django.db.backends.sqlite3"),
+        'NAME': os.environ.get("NAME", os.path.join(BASE_DIR, "db.sqlite3")),
         'USER': os.environ.get("USER"),
         'PASSWORD': os.environ.get("PASSWORD"),
         'HOST': os.environ.get("HOST"),  # You can use a different host if your MySQL server is on a remote machine.
