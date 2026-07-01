@@ -60,16 +60,24 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('ENGINE','django.db.backends.mysql'),
-        'NAME': os.getenv('NAME','app_db'),
-        'USER': os.getenv('USER','app_user'),
-        'PASSWORD': os.getenv('PASSWORD','1234'),
-        'HOST': os.getenv('HOST','mysql'),
-        'PORT': os.getenv('PORT','3306'),
+if os.getenv('ENGINE'):
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('ENGINE'),
+            'NAME': os.getenv('NAME'),
+            'USER': os.getenv('USER'),
+            'PASSWORD': os.getenv('PASSWORD'),
+            'HOST': os.getenv('HOST'),
+            'PORT': os.getenv('PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
