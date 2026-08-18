@@ -1,8 +1,9 @@
+version: '3.8'
 networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:2.0.0
+    image: todoapp:3.0.0
     build:
       context: .
       dockerfile: Dockerfile
