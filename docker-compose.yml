@@ -1,17 +1,22 @@
-# docker-compose.yml
-version: '3'
+version: '3.8'
 networks:
   todoapp-net:
 services:
   pythonapp:
-    image: todoapp:2.0.0
+    image: todoapp:3.0.0
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
-      - PYTHONUNBUFFERED=1
+      PYTHONUNBUFFERED: ${PYTHONUNBUFFERED}
+      ENGINE: ${ENGINE}
+      NAME: ${NAME}
+      USER: ${USER}
+      PASSWORD: ${PASSWORD}
+      HOST: ${HOST}
+      PORT: ${PORT}
     networks:
       - todoapp-net
     depends_on:
@@ -22,16 +27,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mysql
-    container_name: my-sql
+    container_name: mysql
     ports:
       - "3306:3306"
     volumes:
       - todoapp-db-data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=app_db
-      - MYSQL_USER=app_user
-      - MYSQL_PASSWORD=1234
+      MYSQL_DATABASE: ${NAME}
+      MYSQL_USER: ${USER}
+      MYSQL_PASSWORD: ${PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PASSWORD}
     networks:
       - todoapp-net
 volumes:
