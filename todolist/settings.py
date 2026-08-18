@@ -13,6 +13,12 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ENGINE = os.getenv("ENGINE")
+NAME = os.getenv("NAME")
+USER = os.getenv("USER")
+PASSWORD = os.getenv("PASSWORD")
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
