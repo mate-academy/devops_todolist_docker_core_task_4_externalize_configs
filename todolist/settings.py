@@ -67,7 +67,7 @@ DATABASES = {
         'USER': os.environ.get('USER', 'app_user'),
         'PASSWORD': os.environ.get('PASSWORD', '1234'),
         'HOST': os.environ.get('HOST', 'mysql'),
-        'PORT': os.environ.get('PORT', ''), # Leave this empty to use the default MySQL port (3306).
+        'PORT': int(os.environ.get('PORT', 3306)),
     }
 }
 
