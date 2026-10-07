@@ -40,7 +40,13 @@ or start on the [landing page](http://localhost:8000/)
 4. TODO App should work as before
 5. Create PR with your changes and attach it for validation on a platform
 
-
+#### Docker database configuration
+The Compose setup passes `ENGINE`, `NAME`, `USER`, `PASSWORD`, `HOST`, and `PORT`
+to Django. Set these in the shell or in a `.env` file alongside `docker-compose.yml`
+to override the defaults (`mysql.connector.django`, `app_db`, `app_user`, `1234`,
+`mysql`, and `3306`). The MySQL container uses `NAME`, `USER`, and `PASSWORD` as
+its database credentials as well. The application image uses the semantic version
+tag `todoapp:2.0.0`.
 
 
 
