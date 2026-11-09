@@ -39,13 +39,3 @@ or start on the [landing page](http://localhost:8000/)
 3. Use semantic versioning to tag image inside the docker-compose
 4. TODO App should work as before
 5. Create PR with your changes and attach it for validation on a platform
-
-
-
-
-
-
-
-
-
-
