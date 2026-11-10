@@ -28,14 +28,14 @@ or start on the [landing page](http://localhost:8000/)
 - Fork this repository
 
 #### Requirements
-1. pdate docker-compose to be able to set such env variables:
+1. Update docker-compose to be able to set such env variables:
     - ENGINE
     - NAME
     - USER
     - PASSWORD
     - HOST
     - PORT
-2. Update your app to read ENV vars and set DATABASES section fields inside of todolist/settigns.py file
+2. Update your app to read ENV vars and set DATABASES section fields inside of todolist/settings.py file
 3. Use semantic versioning to tag image inside the docker-compose
 4. TODO App should work as before
 5. Create PR with your changes and attach it for validation on a platform
