@@ -66,7 +66,7 @@ DATABASES = {
         'NAME': os.environ.get('NAME', 'app_db'),
         'USER': os.environ.get('USER', 'app_user'),
         'PASSWORD': os.environ.get('PASSWORD', '1234'),
-        'HOST': os.environ.get('HOST', 'localhost'),
+        'HOST': os.environ.get('HOST', 'mysql'),
         'PORT': os.environ.get('PORT', ''),
     }
 }
