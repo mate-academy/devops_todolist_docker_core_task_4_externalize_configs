@@ -12,12 +12,12 @@ FROM python:${PYTHON_VERSION} as run
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
-ENV ENGINE="default"
+ENV ENGINE="django.db.backends.sqlite3"
 ENV NAME="default"
 ENV USER="default"
 ENV PASSWORD="default"
 ENV HOST="default"
-ENV PORT="default"
+ENV PORT="3306"
 
 COPY --from=builder /app .
 
