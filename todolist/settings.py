@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-ENGINE = os.environ.get("ENGINE","")
-NAME = os.environ.get("NAME","")
+ENGINE = os.environ.get("ENGINE","django.db.backends.sqlite3")
+NAME = os.environ.get("NAME","db.sqlite3")
 USER = os.environ.get("USER","")
 PASSWORD = os.environ.get("PASSWORD","")
-HOST = os.environ.get("HOST","")
-PORT = os.environ.get("PORT","")
+HOST = os.environ.get("HOST","localhost")
+PORT = os.environ.get("PORT","3306")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
